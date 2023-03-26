@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name">
+        <br><br>
+        <label for="surname">Surname</label>
+        <input type="text" id="surname">
+        <br><br>
+        <label for="country">Country</label>
+        <select name="" id="country">
+            
+            <option value="KZT">Kazakhstan</option>
+            <option value="ITALY">Italy</option>
+            <option value="SPAIN">Spain</option>
+
+        </select>
+        <br><br>
+        <label for="">Phone numner:</label>
+        <input type="text" id="phone">
+        <br><br>
+        <button id="register">REGISTER</button>
+        <br><br>
+        <button onclick="savetodraft()" id="draft">SAVE TO DRAFT</button>
+        
+    </div>
+    <script>
+        let saveName = document.querySelector('#name')
+        let saveSurname = document.querySelector('#surname')
+        let saveCountry = document.querySelector('#country')
+        let savePhone = document.querySelector('#phone')
+        
+    
+        
+    
+        function savetodraft() {
+          let obj = {
+            name: saveName.value,
+            surname: saveSurname.value,
+            country: saveCountry.value,
+            phone: savePhone.value
+          }
+          localStorage.setItem('info', JSON.stringify(obj))
+        }
+    
+        function init() {
+          let objFromStorage = JSON.parse(localStorage.getItem('info'))
+          if (objFromStorage !== null) {
+            saveName.value = objFromStorage.name
+            saveSurname.value = objFromStorage.surname
+            saveCountry.value = objFromStorage.country
+            savePhone.value = objFromStorage.phone
+            console.log(objFromStorage)
+          }
+          
+        }
+      </script>
+    
+</body>
+</html>
